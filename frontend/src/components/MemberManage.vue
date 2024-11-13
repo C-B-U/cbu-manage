@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-    <p>메인페이지입니다.</p>
+    <p>회원관리 페이지입니다.</p>
 </template>
 
 <style scoped></style>
