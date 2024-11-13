@@ -1,6 +1,5 @@
 package com.example.cbuManage.Service;
 
-import com.example.cbuManage.DTO.LogDTO;
 import com.example.cbuManage.Model.Log;
 import com.example.cbuManage.Repository.LogRepository;
 import lombok.AllArgsConstructor;
