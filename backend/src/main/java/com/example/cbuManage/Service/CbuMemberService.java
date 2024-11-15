@@ -18,9 +18,9 @@ public class CbuMemberService {
     @Autowired
     CbuMemberRepository cbuMemberRepository;
 
-    private static final String SHEET_ID = "1DOms6ze5hcBDhoEOr7lfe62n112yjRb6mmZdxIVakuk";
+    private static final String SHEET_ID = "sdfs";
     private static final String SHEET_NAME = "시트1";
-    private static final String API_KEY = "AIzaSyBKaFP0saSo2wT-xF1tjijCMJdjZl_uzeo";
+    private static final String API_KEY = "sfsrg";
 
     @Transactional
     public void syncMembersFromGoogleSheet() {
