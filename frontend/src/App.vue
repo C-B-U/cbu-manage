@@ -1,5 +1,7 @@
 <script setup lang="ts">
-    import Header from './ComponentsLayout/Header.vue';
+    import Header from './componentsLayout/Header.vue';
+    import Footer from './componentsLayout/Footer.vue';
+
 </script>
 
 <template>
@@ -10,7 +12,8 @@
         <router-view />
     </div>
 
-    
+    <Footer></Footer>
+
 </template>
 
 <style scoped></style>

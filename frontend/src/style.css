@@ -15,6 +15,7 @@
     -moz-osx-font-smoothing: grayscale;
 
     --mainColor:#95C674;
+    --entirePadding:9.375%;
 }
 
 * {
@@ -66,7 +67,6 @@ button:focus-visible {
 }
 
 #app {
-    padding: 0px 9.375%;
     text-align: center;
 }
 

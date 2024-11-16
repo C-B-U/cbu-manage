@@ -34,10 +34,11 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    padding: 20px 0px;
+    padding: 20px var(--entirePadding);
 }
 
 header a {
+    display: flex;
     color:#333;
     transition: all 0.3s;
 }

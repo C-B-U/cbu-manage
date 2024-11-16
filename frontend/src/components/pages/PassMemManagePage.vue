@@ -1,7 +1,17 @@
 <script setup lang="ts"></script>
 
 <template>
-    <p>합격자 관리 페이지입니다.</p>
+    <div class="test">
+        <p>합격자 관리 페이지입니다.</p>
+    </div>
+    
 </template>
 
-<style scoped></style>
+<style scoped>
+.test {
+    height:100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
