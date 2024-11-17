@@ -1,4 +1,4 @@
-package com.example.cbuManage.DTO;
+package com.example.cbumanage.dto;
 
 import lombok.Data;
 

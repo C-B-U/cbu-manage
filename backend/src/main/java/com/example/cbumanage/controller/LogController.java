@@ -1,12 +1,11 @@
-package com.example.cbuManage.Controller;
+package com.example.cbumanage.controller;
 
-import com.example.cbuManage.Model.Log;
-import com.example.cbuManage.Service.LogService;
+import com.example.cbumanage.model.Log;
+import com.example.cbumanage.service.LogService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

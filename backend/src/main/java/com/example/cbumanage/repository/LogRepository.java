@@ -1,6 +1,6 @@
-package com.example.cbuManage.Repository;
+package com.example.cbumanage.repository;
 
-import com.example.cbuManage.Model.Log;
+import com.example.cbumanage.model.Log;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
