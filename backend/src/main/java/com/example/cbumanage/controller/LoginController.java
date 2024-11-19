@@ -1,5 +1,6 @@
 package com.example.cbumanage.controller;
 
+import com.example.cbumanage.service.LogService;
 import com.example.cbumanage.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,9 @@ public class LoginController {
 
     @Autowired
     LoginService loginService;
+
+    @Autowired
+    LogService logService;
 
     @GetMapping("/api/v1/getLoginKey")
     public List<String> getLoginKey(@RequestBody HashMap<String, Object> map){
