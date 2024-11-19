@@ -3,11 +3,13 @@ package com.example.cbuManage.Service;
 import com.example.cbuManage.Model.CbuMember;
 import com.example.cbuManage.Repository.CbuMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.core.env.Environment;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -18,9 +20,13 @@ public class CbuMemberService {
     @Autowired
     CbuMemberRepository cbuMemberRepository;
 
-    private static final String SHEET_ID = "sdfs";
-    private static final String SHEET_NAME = "시트1";
-    private static final String API_KEY = "sfsrg";
+    @Value("${google.spreadSheet.key}")
+    private static String SheetKey;
+
+    @Value("${google.spreadSheet.Id}")
+    private static String SheetId;
+    private static final String SHEET_NAME = "시트 1";
+    private static final String API_KEY = SheetKey;
 
     @Transactional
     public void syncMembersFromGoogleSheet() {
@@ -55,7 +61,7 @@ public class CbuMemberService {
         return UriComponentsBuilder
                 .fromUriString("https://sheets.googleapis.com/v4/spreadsheets/{sheetId}/values/{sheetName}")
                 .queryParam("key", API_KEY)
-                .buildAndExpand(SHEET_ID, SHEET_NAME)
+                .buildAndExpand(SheetId, SHEET_NAME)
                 .toUri();
     }
 
