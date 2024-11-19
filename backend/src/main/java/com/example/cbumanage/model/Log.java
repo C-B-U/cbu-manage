@@ -1,4 +1,4 @@
-package com.example.cbuManage.Model;
+package com.example.cbumanage.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

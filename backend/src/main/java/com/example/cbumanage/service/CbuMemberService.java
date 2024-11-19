@@ -1,7 +1,8 @@
-package com.example.cbuManage.Service;
+package com.example.cbumanage.service;
 
-import com.example.cbuManage.Model.CbuMember;
-import com.example.cbuManage.Repository.CbuMemberRepository;
+import com.example.cbumanage.model.CbuMember;
+import com.example.cbumanage.repository.CbuMemberRepository;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.springframework.core.env.Environment;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -82,12 +82,9 @@ public class CbuMemberService {
     }
 }
 
+@Getter
 class GoogleSheetResponse {
     private List<List<Object>> values;
-
-    public List<List<Object>> getValues() {
-        return values;
-    }
 
     public void setValues(List<List<Object>> values) {
         this.values = values;

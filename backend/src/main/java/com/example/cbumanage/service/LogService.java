@@ -1,7 +1,7 @@
-package com.example.cbuManage.Service;
+package com.example.cbumanage.service;
 
-import com.example.cbuManage.Model.Log;
-import com.example.cbuManage.Repository.LogRepository;
+import com.example.cbumanage.model.Log;
+import com.example.cbumanage.repository.LogRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

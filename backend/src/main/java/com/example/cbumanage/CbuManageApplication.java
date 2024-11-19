@@ -1,4 +1,4 @@
-package com.example.cbuManage;
+package com.example.cbumanage;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

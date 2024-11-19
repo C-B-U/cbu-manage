@@ -1,7 +1,7 @@
-package com.example.cbuManage.Controller;
+package com.example.cbumanage.controller;
 
-import com.example.cbuManage.Repository.CbuMemberRepository;
-import com.example.cbuManage.Service.CbuMemberService;
+import com.example.cbumanage.repository.CbuMemberRepository;
+import com.example.cbumanage.service.CbuMemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
