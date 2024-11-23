@@ -13,6 +13,8 @@ import com.example.cbumanage.utils.CbuMemberMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +43,11 @@ public class CbuMemberManageService {
 	}
 
 	@Transactional
+	public List<CbuMember> getMembers(int page) {
+		Page<CbuMember> memberPage = memberRepository.findAll(PageRequest.of(page, 10));
+		return memberPage.getContent();
+	}
+	@Transactional
 	public List<CbuMember> getMembersWithoutDues(String term) {
 		return memberRepository.findAllWithoutDues(term);
 	}
@@ -49,13 +56,17 @@ public class CbuMemberManageService {
 	public CbuMember createUser(Long adminMemberId, MemberCreateDTO memberCreateDTO) {
 		Optional<CbuMember> _adminMember = memberRepository.findById(adminMemberId);
 		CbuMember adminMember = _adminMember.orElseThrow();
-		if (!adminMember.getRole().contains(Role.ADMIN)) return null;
+		if (!adminMember.getRole().contains(Role.ADMIN)) throw new RuntimeException("You don't have permission");
 
 		CbuMember member = cbuMemberMapper.map(memberCreateDTO, true);
 		if (member == null) {
 			return null;
 		}
+		Log log = new Log(adminMemberId, LogType.CREATE, LogDataType.USER_ENTITY, "Create:cbu_member(" + member + ")");
+
 		memberRepository.save(member);
+		logRepository.save(log);
+
 		return member;
 	}
 
@@ -90,35 +101,6 @@ public class CbuMemberManageService {
 			logRepository.save(log);
 		}
 
-
 		return true;
-	}
-
-
-	@Transactional
-	public boolean addDues(long memberId, String term) {
-		return addDues(memberRepository.findById(memberId).orElseGet(() -> null), term);
-	}
-
-	@Transactional
-	public boolean addDues(CbuMember member, String term) {
-		if (member == null) {
-			return false;
-		}
-
-		Dues dues = new Dues();
-		dues.setMemberId(member.getCbuMemberId());
-		dues.setTerm(term);
-		duesRepository.save(dues);
-		return true;
-	}
-
-	@Transactional
-	public boolean removeDues(long memberId, String term) {
-		AtomicReference<Boolean> success = new AtomicReference<>(true);
-		memberRepository.findById(memberId).ifPresentOrElse(
-				member -> duesRepository.findByMemberIdAndTerm(member.getCbuMemberId(), term).ifPresentOrElse(duesRepository::delete,() -> success.set(false))
-		, () -> success.set(false));
-		return success.get();
 	}
 }

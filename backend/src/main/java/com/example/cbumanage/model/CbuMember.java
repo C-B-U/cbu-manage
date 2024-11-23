@@ -23,7 +23,6 @@ public class CbuMember {
     @Column(name = "role", nullable = false)
     @ColumnDefault("0")
     private List<Role> role; // 권한
-
     @Column(name = "name", length = 32)
     private String name; //이름
 
@@ -33,6 +32,7 @@ public class CbuMember {
     private String  grade; //학년
     private Long    studentNumber; //학번
     private Long    generation; //기수
+    private Boolean ongoing; // 활동 여부
     private String  note; //비고
     private String  kakaoNoti; //공지방 가입 유무
     private String  kakaoChat; //수다방 가입 유무
