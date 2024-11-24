@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CbuMemberService {
+public class CbuMemberSyncService {
     @Autowired
     CbuMemberRepository cbuMemberRepository;
 
@@ -68,14 +68,14 @@ public class CbuMemberService {
     private CbuMember mapRowToMember(List<Object> row) {
         CbuMember member = new CbuMember();
         member.setName((String) row.get(0));
+        member.setRole(List.of());
         member.setPhoneNumber((String) row.get(1));
         member.setMajor((String) row.get(2));
         member.setGrade((String) row.get(3));
         member.setStudentNumber(Long.parseLong(row.get(4).toString()));
         member.setGeneration(Long.parseLong(row.get(5).toString()));
-        member.setOngoingStudy(row.get(6) != "" ? (String) row.get(6) : null);
+//        member.setOngoingStudy(row.get(6) != "" ? (String) row.get(6) : null);
         member.setNote(row.get(7) != "" ? (String) row.get(7) : null);
-        member.setDues(row.get(8) != "" ? (String) row.get(8) : null);
         member.setKakaoNoti(row.get(9) != "" ? (String) row.get(9) : null);
         member.setKakaoChat(row.get(10) != "" ? (String) row.get(10) : null);
         return member;
