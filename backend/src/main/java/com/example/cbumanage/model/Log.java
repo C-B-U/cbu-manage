@@ -19,13 +19,13 @@ public class Log {
 
     @CreatedDate
     @DateTimeFormat(pattern = "yyyy-MM-dd/HH:mm:ss")
-    private LocalDateTime date; // 로그가 생성된 시점
+    private LocalDateTime date;              // 로그가 생성된 시점
 
-    private Long loggerId; // 로그를 생성한 유저
+    private Long loggerId;                   // 로그를 생성한 유저
 
-    private LogType logType; // create, update, delete
-    private LogDataType logDataType; // name, phone_number 등등
-    private String detail; // 로그 내용
+    private LogType logType;                 // create, update, delete
+    private LogDataType logDataType;         // name, phone_number 등등
+    private String detail;                   // 로그 내용
 
     public Log() {
     }

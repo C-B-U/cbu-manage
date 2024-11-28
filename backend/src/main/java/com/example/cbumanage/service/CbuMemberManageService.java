@@ -2,7 +2,8 @@ package com.example.cbumanage.service;
 
 import com.example.cbumanage.dto.MemberCreateDTO;
 import com.example.cbumanage.dto.MemberUpdateDTO;
-import com.example.cbumanage.model.*;
+import com.example.cbumanage.model.CbuMember;
+import com.example.cbumanage.model.Log;
 import com.example.cbumanage.model.enums.LogDataType;
 import com.example.cbumanage.model.enums.LogType;
 import com.example.cbumanage.model.enums.Role;
@@ -21,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class CbuMemberManageService {
@@ -31,7 +31,6 @@ public class CbuMemberManageService {
 	private CbuMemberRepository memberRepository;
 	private DuesRepository duesRepository;
 	private LogRepository logRepository;
-
 	private CbuMemberMapper cbuMemberMapper;
 
 	@Autowired

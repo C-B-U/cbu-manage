@@ -21,33 +21,33 @@ public class CbuMemberSyncService {
     CbuMemberRepository cbuMemberRepository;
 
     @Value("${google.spreadSheet.key}")
-    private static String SheetKey;
+    private static String SheetKey;                        //구글 스프레드 시트 사용 api 키 값
 
     @Value("${google.spreadSheet.Id}")
-    private static String SheetId;
-    private static final String SHEET_NAME = "시트 1";
+    private static String SheetId;                         //구글 스프레드 시트 아이디 값
+    private static final String SHEET_NAME = "시트 1";      //구글 스프레드 시트 시트 이름
     private static final String API_KEY = SheetKey;
 
     @Transactional
-    public void syncMembersFromGoogleSheet() {
-        List<CbuMember> members = getMembersFromGoogleSheet();
-        cbuMemberRepository.saveAll(members);
+    public void syncMembersFromGoogleSheet() {                    //스프레드 시트 -> 데이터베이스 유저 데이터 주입
+        List<CbuMember> members = getMembersFromGoogleSheet();    //스프레드 시트에서 값을 가져와 members에 저장 후
+        cbuMemberRepository.saveAll(members);                     //레포지토리를 이용해 데이터베이스에 members에 저장
     }
 
-    private List<CbuMember> getMembersFromGoogleSheet() {
-        URI sheetUrl = getSheetUri();
+    private List<CbuMember> getMembersFromGoogleSheet() {               //스프레드 시트 데이터 가져오는 함수
+        URI sheetUrl = getSheetUri();                                   //커스텀 URI를 생성
         RestTemplate rt = new RestTemplate();
-        ResponseEntity<GoogleSheetResponse> response = rt.exchange(
+        ResponseEntity<GoogleSheetResponse> response = rt.exchange(     //Get 메소드를 이용해 구글에 요청 전송
                 sheetUrl,
                 HttpMethod.GET,
                 null,
                 GoogleSheetResponse.class
         );
 
-        GoogleSheetResponse sheetResponse = response.getBody();
+        GoogleSheetResponse sheetResponse = response.getBody();         //응답에서 body값을 가져와서
         List<List<Object>> values = sheetResponse.getValues();
 
-        List<CbuMember> members = new ArrayList<>();
+        List<CbuMember> members = new ArrayList<>();                    //arrayList로 매핑
         for (int i = 1; i < values.size(); i++) {
             List<Object> row = values.get(i);
             CbuMember member = mapRowToMember(row);
@@ -57,7 +57,7 @@ public class CbuMemberSyncService {
         return members;
     }
 
-    private URI getSheetUri() {
+    private URI getSheetUri() {       //api key, 스프레드 시트 아이디와 이름을 URI에 주입
         return UriComponentsBuilder
                 .fromUriString("https://sheets.googleapis.com/v4/spreadsheets/{sheetId}/values/{sheetName}")
                 .queryParam("key", API_KEY)
@@ -65,7 +65,7 @@ public class CbuMemberSyncService {
                 .toUri();
     }
 
-    private CbuMember mapRowToMember(List<Object> row) {
+    private CbuMember mapRowToMember(List<Object> row) {     //멤버 데이터값을 String 값으로 변환해 매핑 (스프레드시트에 빈칸이 있으면 작동이 멈춤 해결방법 찾는중,,,)
         CbuMember member = new CbuMember();
         member.setName((String) row.get(0));
         member.setRole(List.of());
