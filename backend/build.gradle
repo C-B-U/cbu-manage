@@ -27,6 +27,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation('io.jsonwebtoken:jjwt-api:0.12.6')
+	runtimeOnly('io.jsonwebtoken:jjwt-impl:0.12.6')
+	runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.12.6') {
+		exclude(group: 'org.json', module: 'json') //provided by Android natively
+	}
+	implementation 'org.json:json:20240303'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
