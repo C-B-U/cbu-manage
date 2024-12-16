@@ -45,7 +45,8 @@ public class LoginService {
             String cookie = cookies.get(0);
             int startIndex = "KSESSIONID=".length();
             int endIndex = cookie.indexOf(';');
-            return Collections.singletonList(cookie.substring(startIndex, endIndex));
+            return Collections.singletonList(cookie.substring(startIndex, endIndex));   //여기에 jwt 추가
+
         }
     }
 
